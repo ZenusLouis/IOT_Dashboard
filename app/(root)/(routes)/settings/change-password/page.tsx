@@ -7,7 +7,7 @@ import ChangePasswordForm from "../components/change-password-form";
 const SettingsPage = () => {
   return (
     <>
-      <div className="space-y-6">
+      <div className="space-y-6 max-w-lg mx-auto p-4">
         <Heading
           title="Đổi Mật Khẩu"
           description="Trang này giúp bạn thay đổi mật khẩu"

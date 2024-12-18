@@ -33,14 +33,20 @@ const Navbar = () => {
 
   return (
     <div className="border-b">
-      <div className="flex h-16 items-center px-6">
+      <div className="flex h-16 items-center px-4 sm:px-6">
+        {/* Main Navigation */}
         <MainNav />
-        <div className="ml-auto flex items-center space-x-4 gap-2">
-          <div className="flex flex-col text-right">
+
+        {/* Profile Section */}
+        <div className="ml-auto flex items-center space-x-2 sm:space-x-4">
+          <div className="flex flex-col items-end text-right">
             <span>{profileInfo ? `Chào, ${profileInfo?.firstName}` : ``}</span>
           </div>
-          <Link href={"/logout"}>
-            <Button>Đăng Xuất</Button>
+          {/* Logout Button */}
+          <Link href="/logout">
+            <Button className="text-sm font-medium bg-gray-900 text-white hover:bg-gray-800 rounded-md px-4 py-2">
+              Đăng Xuất
+            </Button>
           </Link>
         </div>
       </div>

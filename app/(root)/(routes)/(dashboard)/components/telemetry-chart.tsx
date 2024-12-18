@@ -68,16 +68,25 @@ const TelemetryChart = ({
   };
 
   return (
-    <div className="container mx-0 lg:mx-auto px-0">
-      {loading && <Loader className="mr-2 h-4 w-4 animate-spin" />}
+    <div className="container mx-0 lg:mx-auto px-0 py-4">
+      {/* Loader */}
+      {loading && (
+        <div className="flex justify-center items-center">
+          <Loader className="h-6 w-6 animate-spin text-gray-500" />
+        </div>
+      )}
+
+      {/* Chart */}
       {data != null && (
-        <Chart
-          chartType="LineChart"
-          width="100%"
-          height="400px"
-          data={data}
-          options={options}
-        />
+        <div className="w-full overflow-x-auto">
+          <Chart
+            chartType="LineChart"
+            width="100%"
+            height="400px"
+            data={data}
+            options={options}
+          />
+        </div>
       )}
     </div>
   );

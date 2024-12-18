@@ -32,17 +32,18 @@ export function SidebarNav({ className, items, ...props }: SidebarNavProps) {
           className={cn(
             buttonVariants({ variant: "ghost" }),
             pathname === item.href
-              ? "bg-muted hover:bg-muted"
+              ? "bg-muted hover:bg-muted text-primary"
               : "hover:bg-transparent hover:underline",
-            "justify-start"
+            "justify-start w-full"
           )}
+          aria-current={pathname === item.href ? "page" : undefined}
         >
           <div className="flex gap-2 items-center">
-            {item.icon}
-            {item.title}
+            {item.icon && <span className="text-lg">{item.icon}</span>}
+            <span className="text-sm lg:text-base">{item.title}</span>
           </div>
         </Link>
       ))}
     </nav>
-  );
+  );  
 }

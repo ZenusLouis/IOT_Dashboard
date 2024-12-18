@@ -9,6 +9,7 @@ interface MapsProps {
 }
 
 import { icon } from "leaflet";
+import React from "react";
 
 const markerIcon = icon({
   iconUrl: "/leaflet/images/marker-icon.png",
@@ -29,29 +30,34 @@ const Maps: React.FC<MapsProps> = ({ latitude, longitude, safe_zone }) => {
   console.log({ safe_zone });
   if (longitude && latitude && safe_zone) {
     return (
-      <MapContainer center={[latitude, longitude]} zoom={16}>
+      <MapContainer
+        center={[latitude, longitude]}
+        zoom={16}
+        className="h-full w-full"
+      >
+        {/* Tile Layer */}
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+  
+        {/* Current Location Marker */}
         <Marker position={[latitude, longitude]} icon={markerIcon}>
           <Popup>Vị trí hiện tại</Popup>
         </Marker>
+  
+        {/* Safe Zones */}
         {safe_zone.map((item: any, idx: number) => (
-          <>
-            <Marker
-              key={idx}
-              position={[item.latitude, item.longitude]}
-              icon={safeIcon}
-            >
+          <React.Fragment key={idx}>
+            <Marker position={[item.latitude, item.longitude]} icon={safeIcon}>
               <Popup>Vị trí an toàn {idx + 1}</Popup>
             </Marker>
             <Circle
-              center={{ lat: item.latitude, lng: item.longitude }}
+              center={[item.latitude, item.longitude]}
               fillColor="green"
               radius={item.radius}
             />
-          </>
+          </React.Fragment>
         ))}
       </MapContainer>
     );

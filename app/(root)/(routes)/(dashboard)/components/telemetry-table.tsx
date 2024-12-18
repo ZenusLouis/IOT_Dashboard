@@ -145,10 +145,19 @@ const TelemetryTable = ({
   }, [endTs, entityId, entityType, keys, startTs]);
 
   return (
-    <div className="container mx-0 lg:mx-auto px-0">
-      {loading && <Loader className="mr-2 h-4 w-4 animate-spin" />}
+    <div className="container mx-0 lg:mx-auto px-0 py-4">
+      {/* Loader */}
+      {loading && (
+        <div className="flex justify-center items-center">
+          <Loader className="h-6 w-6 animate-spin text-gray-500" />
+        </div>
+      )}
+
+      {/* Data Table */}
       {dataFormatTable != null && (
-        <DataTable columns={columns} data={dataFormatTable} />
+        <div className="w-full overflow-x-auto">
+          <DataTable columns={columns} data={dataFormatTable} />
+        </div>
       )}
     </div>
   );

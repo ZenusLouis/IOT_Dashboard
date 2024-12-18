@@ -20,17 +20,23 @@ const SettingsLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <div className="space-y-6">
+        {/* Heading */}
         <Heading title="Cài Đặt" description="Quản lý tài khoản của bạn" />
         <Separator />
+  
+        {/* Content Layout */}
         <div className="flex flex-col space-y-8 lg:flex-row lg:space-x-12 lg:space-y-0">
+          {/* Sidebar */}
           <aside className="-mx-4 lg:w-1/5">
             <SidebarNav items={sidebarNavItems} />
           </aside>
-          <div className="flex-1 lg:max-w-2xl">{children}</div>
+  
+          {/* Main Content */}
+          <div className="flex-1 lg:max-w-2xl p-4 lg:p-0">{children}</div>
         </div>
       </div>
     </>
-  );
+  );  
 };
 
 export default SettingsLayout;

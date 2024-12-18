@@ -20,8 +20,8 @@ import TelemetryTable from "./components/telemetry-table";
 
 const { deviceId, tbServer } = config;
 const keys = "round_number";
-  const startkey = true;
-  let active = false;
+const startkey = true;
+let active = false;
 
 const formatAttribute = (data: any) => {
   let format = {} as any;
@@ -91,21 +91,21 @@ const DashboardPage = () => {
       "X-Authorization": `Bearer ${token}`,
     };
     axios
-        .get(url, { headers })
-        .then((res) => {
-          const data = res.data;
-          const format = formatAttribute(data);
-          setAttribute(format);
-          localStorage.setItem("attribute", JSON.stringify(format));
-        })
-        .catch((error) => {
-          console.error({ error });
-        });
+      .get(url, { headers })
+      .then((res) => {
+        const data = res.data;
+        const format = formatAttribute(data);
+        setAttribute(format);
+        localStorage.setItem("attribute", JSON.stringify(format));
+      })
+      .catch((error) => {
+        console.error({ error });
+      });
   };
   useEffect(() => {
     getAttribute();
   }, []);
-  useEffect(()=>{
+  useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
       redirect("/login");
@@ -130,32 +130,32 @@ const DashboardPage = () => {
       })
       .finally(() => { });
   })
-const handleStart = async () => {
-  const token = localStorage.getItem("token");
-  if (!token) {
-    redirect("/login");
+  const handleStart = async () => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      redirect("/login");
+    }
+    const url = `https://${tbServer}/api/plugins/telemetry/${deviceId}/SHARED_SCOPE`;
+    const headers = {
+      "Content-Type": "application/json",
+      "X-Authorization": `Bearer ${token}`,
+    };
+    const data = {
+      start: startkey,
+    };
+    await axios.post(url, data, { headers })
+      .then(() => {
+        toast.success("Chạy thành công");
+        setSaveState(!saveState);
+      })
+      .catch((error) => {
+        console.error({ error });
+        toast.error("Có lỗi xảy ra");
+      })
+      .finally(() => { });
   }
-  const url = `https://${tbServer}/api/plugins/telemetry/${deviceId}/SHARED_SCOPE`;
-  const headers = {
-    "Content-Type": "application/json",
-    "X-Authorization": `Bearer ${token}`,
-  };
-  const data = {
-    start: startkey,
-  };
-  await axios.post(url, data, { headers })
-    .then(() => {
-      toast.success("Chạy thành công");
-      setSaveState(!saveState);
-    })
-    .catch((error) => {
-      console.error({ error });
-      toast.error("Có lỗi xảy ra");
-    })
-    .finally(() => { });
-}
   const now = Date.now();
-  const handleAttributeChange = (key: string, value:  number) => {
+  const handleAttributeChange = (key: string, value: number) => {
     setAttribute((prev: any) => {
       const updatedAttributes = {
         ...prev,
@@ -212,65 +212,68 @@ const handleStart = async () => {
     ssr: false,
   });
 
-
   // @ts-ignore
   // @ts-ignore
   return (
-    <div className="flex gap-1">
-      <div className="w-1/3 flex z-40">
+    <div className="flex flex-col gap-4 lg:flex-row lg:gap-1 p-4">
+      {/* Left Section */}
+      <div className="w-full lg:w-1/3 flex z-40">
         <LatestTelemetryCard
-          className="justify-center"
+          className="justify-center w-full"
           title="Vinh Vinh Phat"
           data={latestData?.["round_number"][0]}
           isInteger={true}
           loading={loading}
-
           unit="%"
         >
-            <div className="flex flex-col gap-4">
-      <InputThreshold
-        title="Vòng Thuận"
-        targetKey="vong_1"
-        setEdit={setEdit}
-        edit={edit}
-        attribute={attribute}
-        onChange={handleAttributeChange}
-      />
-      <InputThreshold
-        title="Vòng Nghịch"
-        targetKey="vong_2"
-        setEdit={setEdit}
-        edit={edit}
-        attribute={attribute}
-        onChange={handleAttributeChange}
-      />
-      <Button
-        className="mx-auto save-btn w-1/3"
-        onClick={onSave}
-      >
-        Lưu
-      </Button>
-    </div>
+          <div className="flex flex-col gap-4">
+            <InputThreshold
+              title="Vòng Thuận"
+              targetKey="vong_1"
+              setEdit={setEdit}
+              edit={edit}
+              attribute={attribute}
+              onChange={handleAttributeChange}
+            />
+            <InputThreshold
+              title="Vòng Nghịch"
+              targetKey="vong_2"
+              setEdit={setEdit}
+              edit={edit}
+              attribute={attribute}
+              onChange={handleAttributeChange}
+            />
+            <Button
+              className="mx-auto save-btn w-1/2 md:w-1/3"
+              onClick={onSave}
+            >
+              Lưu
+            </Button>
+          </div>
         </LatestTelemetryCard>
       </div>
-      <div className=" flex w-1/3">
-        <Button className="run-btn w-1/3 h-[100px] mx-auto my-auto rounded-1/3 bg-white text-green text-lg font-bold border-solid border-2 border-green"
+
+      {/* Middle Section */}
+      <div className="w-full lg:w-1/3 flex">
+        <Button
+          className="run-btn w-1/2 lg:w-1/3 h-[100px] mx-auto my-auto rounded-xl bg-white text-green text-lg font-bold border-2 border-green"
           onClick={handleStart}
         >
           Run
         </Button>
       </div>
-      <div className="w-1/3 h-[300px] state-device bg-gray-100 rounded-lg flex flex-col justify-center items-center">
-       <span className="text-2xl font-bold">State Device</span>
-       {active ? (
-        <div className="w-[200px] h-[200px] rounded-full bg-green-500 text-center flex justify-center items-center">
-        </div>
-      ) : (
-        <div className="w-[200px] h-[200px] rounded-full bg-orange-500 text-center flex justify-center items-center">
-        </div>
-      )}
-      </div>
 
+      {/* Right Section */}
+      <div className="w-full lg:w-1/3 h-[300px] state-device bg-gray-100 rounded-lg flex flex-col justify-center items-center">
+        <span className="text-xl md:text-2xl font-bold mb-4">State Device</span>
+        {active ? (
+          <div className="w-[150px] md:w-[200px] h-[150px] md:h-[200px] rounded-full bg-green-500 flex justify-center items-center">
+          </div>
+        ) : (
+          <div className="w-[150px] md:w-[200px] h-[150px] md:h-[200px] rounded-full bg-orange-500 flex justify-center items-center">
+          </div>
+        )}
+      </div>
     </div>
   );
 };

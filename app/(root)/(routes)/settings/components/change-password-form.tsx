@@ -68,9 +68,11 @@ const ChangePasswordForm = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-8 max-w-md"
+        className="space-y-8 max-w-md mx-auto"
       >
+        {/* Form Fields */}
         <div className="space-y-4">
+          {/* Current Password Field */}
           <FormField
             control={form.control}
             name="currentPassword"
@@ -88,6 +90,8 @@ const ChangePasswordForm = () => {
               </FormItem>
             )}
           />
+  
+          {/* New Password Field */}
           <FormField
             control={form.control}
             name="newPassword"
@@ -105,6 +109,8 @@ const ChangePasswordForm = () => {
               </FormItem>
             )}
           />
+  
+          {/* Confirm New Password Field */}
           <FormField
             control={form.control}
             name="confirmNewPassword"
@@ -123,13 +129,19 @@ const ChangePasswordForm = () => {
             )}
           />
         </div>
-        <Button type="submit" className="w-full bg-gray-900" disabled={loading}>
+  
+        {/* Submit Button */}
+        <Button
+          type="submit"
+          className="w-full bg-gray-900 text-white hover:bg-gray-800"
+          disabled={loading}
+        >
           {loading && <Loader className="mr-2 h-4 w-4 animate-spin" />}
           Cập Nhật Mật Khẩu
         </Button>
       </form>
     </Form>
-  );
+  );  
 };
 
 export default ChangePasswordForm;

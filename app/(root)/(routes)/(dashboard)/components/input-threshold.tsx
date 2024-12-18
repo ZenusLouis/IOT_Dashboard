@@ -20,7 +20,7 @@ const InputThreshold: React.FC<InputThresholdProps> = ({
   attribute,
   onChange,
 }) => {
-  const [localValue, setLocalValue] = useState< number >(
+  const [localValue, setLocalValue] = useState<number>(
     attribute?.[targetKey]
   );
 
@@ -30,11 +30,11 @@ const InputThreshold: React.FC<InputThresholdProps> = ({
   }, [attribute, targetKey]);
 
   return (
-    <div className="flex justify-start items-center gap-4">
-      {title}:{" "}
+    <div className="flex flex-col sm:flex-row justify-start items-center gap-2 sm:gap-4">
+      <span className="text-sm font-medium sm:w-1/3">{title}:</span>
       <Input
         value={localValue || ""}
-        className="w-[200px] rounded-full ms-2"
+        className="w-full sm:w-[200px] rounded-full ms-0 sm:ms-2 sm:text-center"
         type="number"
         onChange={(e) => {
           const value = parseInt(e.target.value);
@@ -42,10 +42,10 @@ const InputThreshold: React.FC<InputThresholdProps> = ({
           onChange(targetKey, value); // Gửi giá trị thay đổi về parent
         }}
       />
-      <Button
+      {/* <Button
         variant={"ghost"}
         size={"sm"}
-        className="rounded-full"
+        className="rounded-full mt-2 sm:mt-0"
         style={{ zIndex: 99 }}
         onClick={() => {
           // Cho phép chỉnh sửa khi người dùng click Edit
@@ -56,7 +56,7 @@ const InputThreshold: React.FC<InputThresholdProps> = ({
         }}
       >
         <Edit className="w-4 h-4" />
-      </Button>
+      </Button> */}
     </div>
   );
 };

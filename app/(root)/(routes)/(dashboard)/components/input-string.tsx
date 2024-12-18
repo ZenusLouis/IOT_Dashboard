@@ -26,11 +26,16 @@ const InputString: React.FC<InputStringProps> = ({
   return (
     <div
       className={cn(
-        "flex justify-start items-center gap-2 col-span-full",
+        "flex flex-col sm:flex-row justify-start items-center gap-2 sm:gap-4 col-span-full",
         className
       )}
     >
-      <span className="min-w-[100px]">{title}: </span>
+      {/* Title */}
+      <span className="min-w-[100px] text-sm sm:text-base font-medium">
+        {title}:
+      </span>
+  
+      {/* Input Handling */}
       {edit.key === targetKey ? (
         <Input
           value={edit.value}
@@ -44,8 +49,10 @@ const InputString: React.FC<InputStringProps> = ({
           disabled
         />
       )}
+  
+      {/* Buttons */}
       {edit.key === targetKey ? (
-        <div className="flex">
+        <div className="flex gap-2 mt-2 sm:mt-0">
           <Button
             variant={"ghost"}
             size={"sm"}
@@ -67,7 +74,7 @@ const InputString: React.FC<InputStringProps> = ({
         <Button
           variant={"ghost"}
           size={"sm"}
-          className="rounded-full"
+          className="rounded-full mt-2 sm:mt-0"
           onClick={() =>
             setEdit({
               key: targetKey,
@@ -79,7 +86,7 @@ const InputString: React.FC<InputStringProps> = ({
         </Button>
       )}
     </div>
-  );
+  );  
 };
 
 export default InputString;
