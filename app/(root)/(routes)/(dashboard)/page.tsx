@@ -180,7 +180,7 @@ const DashboardPage = () => {
     await axios
       .post(url, attribute, { headers })
       .then(() => {
-        toast.success("Lưu ngưỡng thành công");
+        toast.success("Lưu thành công");
       })
       .catch((error) => {
         console.error({ error });
@@ -228,7 +228,7 @@ const DashboardPage = () => {
         >
           <div className="flex flex-col gap-4">
             <InputThreshold
-              title="Vòng Thuận"
+              title="Vòng 1"
               targetKey="vong_1"
               setEdit={setEdit}
               edit={edit}
@@ -236,7 +236,7 @@ const DashboardPage = () => {
               onChange={handleAttributeChange}
             />
             <InputThreshold
-              title="Vòng Nghịch"
+              title="Vòng 2"
               targetKey="vong_2"
               setEdit={setEdit}
               edit={edit}
@@ -251,7 +251,7 @@ const DashboardPage = () => {
             </Button>
           </div>
         </LatestTelemetryCard>
-      </div>
+      </div >
 
       {/* Middle Section */}
       <div className="w-full lg:w-1/3 flex">
@@ -259,18 +259,20 @@ const DashboardPage = () => {
           className="run-btn w-1/2 lg:w-1/3 h-[100px] mx-auto my-auto rounded-xl bg-white text-green text-lg font-bold border-2 border-green"
           onClick={handleStart}
         >
-          Run
+          Chạy
         </Button>
       </div>
 
       {/* Right Section */}
-      <div className="w-full lg:w-1/3 h-[300px] state-device bg-gray-100 rounded-lg flex flex-col justify-center items-center">
-        <span className="text-xl md:text-2xl font-bold mb-4">State Device</span>
+      <div className="w-1/3 h-[300px] state-device bg-gray-100 rounded-lg flex flex-col justify-center items-center">
+        <span className="text-2xl font-bold">Trạng thái thiết bị</span>
         {active ? (
-          <div className="w-[150px] md:w-[200px] h-[150px] md:h-[200px] rounded-full bg-green-500 flex justify-center items-center">
+          <div className="w-[200px] h-[200px] rounded-full bg-green-500 text-center flex justify-center items-center">
+            <span className="text-white text-xl font-semibold">Đang hoạt động</span>
           </div>
         ) : (
-          <div className="w-[150px] md:w-[200px] h-[150px] md:h-[200px] rounded-full bg-orange-500 flex justify-center items-center">
+          <div className="w-[200px] h-[200px] rounded-full bg-red-500 text-center flex justify-center items-center">
+            <span className="text-white text-xl font-semibold">Ngừng hoạt động</span>
           </div>
         )}
       </div>

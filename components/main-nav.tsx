@@ -37,14 +37,14 @@ const MainNav = ({
         {...props}
       >
         {/* Left Section: Logo */}
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-4">
           <Link href="/" className="flex items-center space-x-2">
             <Image
               src="/leaflet/images/VVP.png"
               alt="Logo"
-              width={40}
-              height={40}
-              className="h-10 w-10 object-contain"
+              width={100}
+              height={100}
+              className="object-contain"
               priority
             />
           </Link>
@@ -71,6 +71,7 @@ const MainNav = ({
             ))}
           </div>
         </div>
+
 
         {/* Right Section: Hamburger and Icon */}
         <div className="flex items-center space-x-4">
