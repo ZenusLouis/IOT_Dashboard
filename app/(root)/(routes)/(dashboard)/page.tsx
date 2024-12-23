@@ -220,7 +220,7 @@ const DashboardPage = () => {
       <div className="w-full lg:w-1/3 flex z-40">
         <LatestTelemetryCard
           className="justify-center w-full"
-          title="Vinh Vinh Phat"
+          title="FURUKAWA AUTOMOTIVE PARTS"
           data={latestData?.["round_number"][0]}
           isInteger={true}
           loading={loading}
@@ -252,7 +252,7 @@ const DashboardPage = () => {
           </div>
         </LatestTelemetryCard>
       </div>
-  
+
       {/* Middle Section */}
       <div className="w-full lg:w-1/3 flex">
         <Button
@@ -262,7 +262,7 @@ const DashboardPage = () => {
           Chạy
         </Button>
       </div>
-  
+
       {/* Right Section */}
       <div className="w-full lg:w-1/3 h-[300px] state-device bg-gray-100 rounded-lg flex flex-col justify-center items-center">
         <span className="text-xl sm:text-2xl font-bold">Trạng thái thiết bị</span>
@@ -278,7 +278,7 @@ const DashboardPage = () => {
       </div>
     </div>
   );
-  
+
 };
 
 export default DashboardPage;
