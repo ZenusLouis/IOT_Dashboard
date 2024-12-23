@@ -215,7 +215,7 @@ const DashboardPage = () => {
   // @ts-ignore
   // @ts-ignore
   return (
-    <div className="flex flex-col gap-4 lg:flex-row lg:gap-1 p-4">
+    <div className="flex flex-col gap-4 lg:flex-row lg:gap-6 p-4">
       {/* Left Section */}
       <div className="w-full lg:w-1/3 flex z-40">
         <LatestTelemetryCard
@@ -244,40 +244,41 @@ const DashboardPage = () => {
               onChange={handleAttributeChange}
             />
             <Button
-              className="mx-auto save-btn w-1/2 md:w-1/3"
+              className="mx-auto save-btn w-2/3 md:w-1/2 lg:w-1/3"
               onClick={onSave}
             >
               Lưu
             </Button>
           </div>
         </LatestTelemetryCard>
-      </div >
-
+      </div>
+  
       {/* Middle Section */}
       <div className="w-full lg:w-1/3 flex">
         <Button
-          className="run-btn w-1/2 lg:w-1/3 h-[100px] mx-auto my-auto rounded-xl bg-white text-green text-lg font-bold border-2 border-green"
+          className="run-btn w-2/3 sm:w-1/2 lg:w-1/3 h-[100px] mx-auto my-auto rounded-xl bg-white text-green text-lg font-bold border-2 border-green"
           onClick={handleStart}
         >
           Chạy
         </Button>
       </div>
-
+  
       {/* Right Section */}
-      <div className="w-1/3 h-[300px] state-device bg-gray-100 rounded-lg flex flex-col justify-center items-center">
-        <span className="text-2xl font-bold">Trạng thái thiết bị</span>
+      <div className="w-full lg:w-1/3 h-[300px] state-device bg-gray-100 rounded-lg flex flex-col justify-center items-center">
+        <span className="text-xl sm:text-2xl font-bold">Trạng thái thiết bị</span>
         {active ? (
-          <div className="w-[200px] h-[200px] rounded-full bg-green-500 text-center flex justify-center items-center">
-            <span className="text-white text-xl font-semibold">Đang hoạt động</span>
+          <div className="w-[150px] sm:w-[200px] h-[150px] sm:h-[200px] rounded-full bg-green-500 text-center flex justify-center items-center">
+            <span className="text-white text-sm sm:text-xl font-semibold">Đang hoạt động</span>
           </div>
         ) : (
-          <div className="w-[200px] h-[200px] rounded-full bg-red-500 text-center flex justify-center items-center">
-            <span className="text-white text-xl font-semibold">Ngừng hoạt động</span>
+          <div className="w-[150px] sm:w-[200px] h-[150px] sm:h-[200px] rounded-full bg-red-500 text-center flex justify-center items-center">
+            <span className="text-white text-sm sm:text-xl font-semibold">Ngừng hoạt động</span>
           </div>
         )}
       </div>
     </div>
   );
+  
 };
 
 export default DashboardPage;

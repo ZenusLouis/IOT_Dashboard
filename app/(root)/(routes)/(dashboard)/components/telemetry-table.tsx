@@ -146,14 +146,11 @@ const TelemetryTable = ({
 
   return (
     <div className="container mx-0 lg:mx-auto px-0 py-4">
-      {/* Loader */}
       {loading && (
         <div className="flex justify-center items-center">
           <Loader className="h-6 w-6 animate-spin text-gray-500" />
         </div>
       )}
-
-      {/* Data Table */}
       {dataFormatTable != null && (
         <div className="w-full overflow-x-auto">
           <DataTable columns={columns} data={dataFormatTable} />
