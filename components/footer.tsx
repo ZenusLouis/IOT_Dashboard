@@ -13,11 +13,10 @@ const Footer = () => {
                         Về Chúng Tôi
                     </h4>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
-                        <strong>Product by:</strong><br />
+                        <strong>Product By:</strong><br />
                         VINH VINH PHAT ONE MEMBER CO., LTD
                     </p>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
-                        <strong>Địa chỉ:</strong><br />
                         Add: 359 Ap Chien Luoc Street, Khu Pho 2, Binh Hung Hoa A Ward,
                         Binh Tan District, Ho Chi Minh City<br />
                         Fac: 2861, National Highway 1, Hamlet 3, Binh Chanh Commune,

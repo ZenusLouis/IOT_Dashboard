@@ -69,7 +69,7 @@ const LoginForm = () => {
     <Card className="w-[24em]">
       <CardHeader className="space-y-1">
         <CardTitle className="text-2xl">Đăng Nhập</CardTitle>
-        <CardDescription>Truy Cập Bảng Điều Khiển IoT</CardDescription>
+        <CardDescription>Smart Wire Twisting Monitor</CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
